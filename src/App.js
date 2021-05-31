@@ -5,12 +5,17 @@ import BookTable from "./components/tables/BookTable";
 import bookList from "./data";
 
 function App() {
-  const [books, setBooks] = useState(bookList);
+  const data = JSON.parse(localStorage.getItem('listbooks')) || bookList;
+
+  const [books, setBooks] = useState(data);
 
   const addBook = (book) => {
     console.log(book);
     book.id = books.length + 1;
-    setBooks([...books, book]);
+    const newBook = [...books, book];
+    setBooks(newBook);
+
+    localStorage.setItem('listbooks', JSON.stringify(newBook));
   };
 
   const deleteBook = (id) => {
@@ -21,6 +26,8 @@ function App() {
     console.log(newBook);
     newBook.splice(index, 1);
     setBooks(newBook);
+    
+    localStorage.setItem('listbooks', JSON.stringify(newBook));
   };
 
   const [isEdit, setIsEdit] = useState(false);
