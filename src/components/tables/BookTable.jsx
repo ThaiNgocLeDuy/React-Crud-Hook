@@ -29,54 +29,51 @@ function BookTable(props) {
     if (editBook) {
       editBook(id, book);
     }
-  };  
+  };
 
   return (
-    <>
-      
-      <table className="table table-striped table-bordered">
-        <thead>
+    <table className="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th className="text-center">ID</th>
+          <th className="text-center">NAME</th>
+          <th className="text-center">AUTHOR</th>
+          <th className="text-center">ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {books.length > 0 ? (
+          books.map((book) => {
+            const { id, name, author } = book; //es6 syntax
+            return (
+              <tr key={id}>
+                <td className="text-center">{id}</td>
+                <td>{name}</td>
+                <td className="text-center">{author}</td>
+                <td className="text-center">
+                  <button
+                    className="btn btn-danger mr-1"
+                    onClick={() => handleClickDeleteButton(id)}
+                  >
+                    DELETE
+                  </button>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => handleClickEditButton(id, book)}
+                  >
+                    EDIT
+                  </button>
+                </td>
+              </tr>
+            );
+          })
+        ) : (
           <tr>
-            <th className="text-center">ID</th>
-            <th className="text-center">NAME</th>
-            <th className="text-center">AUTHOR</th>
-            <th className="text-center">ACTIONS</th>
+            <td colSpan={8}>No Books found</td>
           </tr>
-        </thead>
-        <tbody>
-          {books.length > 0 ? (
-            books.map((book) => {
-              const { id, name, author } = book; //es6 syntax
-              return (
-                <tr key={id}>
-                  <td className="text-center">{id}</td>
-                  <td>{name}</td>
-                  <td className="text-center">{author}</td>
-                  <td className="text-center">
-                    <button
-                      className="btn btn-danger mr-1"
-                      onClick={() => handleClickDeleteButton(id)}
-                    >
-                      DELETE
-                    </button>
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => handleClickEditButton(id, book)}
-                    >
-                      EDIT
-                    </button>
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td colSpan={8}>No Books found</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </>
+        )}
+      </tbody>
+    </table>
   );
 }
 
