@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-AddBookForm.propTypes = {};
+AddBookForm.propTypes = {
+    addBook: PropTypes.func,
+};
+
+AddBookForm.defaultProps = {
+    addBook: null,
+};
 
 function AddBookForm(props) {
   const initBook = { id: null, name: "", author: "" };

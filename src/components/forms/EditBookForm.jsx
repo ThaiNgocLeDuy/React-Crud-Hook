@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
+EditBookForm.propTypes = {
+  currentBook: PropTypes.object,
+  updateBook: PropTypes.func,
+  setIsEdit: PropTypes.func,
+};
+
+EditBookForm.defaultProps = {
+    currentBook: {},
+    updateBook: null,
+    setIsEdit: false,
+};
 
 function EditBookForm(props) {
-  useEffect(() => {
-    setBook(props.currentBook);
-  }, [props]);
+  const { currentBook, updateBook, setIsEdit } = props;
 
-  const [book, setBook] = useState(props.currentBook);
+  useEffect(() => {
+    setBook(currentBook);
+  }, [currentBook]);
+
+  const [book, setBook] = useState(currentBook);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,11 +29,11 @@ function EditBookForm(props) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if (book.name && book.author) props.updateBook(book);
+    if (book.name && book.author) updateBook(book);
   };
 
   const handleSetEditing = () => {
-      props.setIsEdit(false);
+    setIsEdit(false);
   };
 
   return (
@@ -48,7 +63,7 @@ function EditBookForm(props) {
         className="btn btn-primary"
         onClick={handleSubmitForm}
       >
-        ADD
+        SAVE
       </button>
       <button
         type="submit"
