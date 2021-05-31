@@ -21,7 +21,7 @@ function AddBookForm(props) {
     if (book.name && book.author) {
         handleChange(e, addBook(book));
     }
-
+    setBook(initBook);
   };
 
   return (
