@@ -10,18 +10,13 @@ function Navbar(props) {
         <Link to="/">LOGO</Link>
       </h3>
         <h3 className="text-center">React Crud App</h3>
-      <ul className="nav_links">
+      {/* <ul className="nav_links">
         <li className="nav_item">
           <Link to="/">
             <FaHome /> Home
           </Link>
         </li>
-        <li className="nav_item">
-          <Link to="/about">
-            <FaBug /> About me
-          </Link>
-        </li>
-      </ul>
+      </ul> */}
     </nav>
   );
 }
